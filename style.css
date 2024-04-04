@@ -1,0 +1,25 @@
+body{
+    display: grid;
+    place-items: center;
+}
+
+#opText{
+    width:  380px;
+    height: 110px; 
+}
+
+#calcUi{
+    width:  380px;
+    height: 330px;
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.square{
+    background-color: rgb(197, 197, 197);
+    margin: 5px;
+}
