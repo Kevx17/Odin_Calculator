@@ -22,4 +22,14 @@ body{
 .square{
     background-color: rgb(197, 197, 197);
     margin: 5px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
 }
+.square:hover{
+    background-color: rgb(124, 148, 179);
+}
+.square:active {
+    transform: scale(0.95);
+    transition: transform 0.2s;
+  }
