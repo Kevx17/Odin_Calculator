@@ -21,7 +21,7 @@ let h = 50;
 const container = document.querySelector("#calcUi");
 // the content of the buttons based on the order they are created in the for loop
 let displayArr = ['', '', 'clear', '<-', '1', '2', '3', ' + ', '4', '5', '6', ' - ', '7', '8', '9', ' * ', '0', '.', '=', ' / '];
-
+let b = false;
 
 for (let i = 0; i < 20; i++) {
   const div = document.createElement("div");
@@ -34,6 +34,19 @@ for (let i = 0; i < 20; i++) {
     let display = document.querySelector("#opText");
     let opStr = display.textContent;
     let arr = opStr.trim().split(/\s+/);
+    if (b) {
+      if (clicked == " + " || clicked == " - " || clicked == " * " || clicked == " / ") {
+        document.querySelector("#opText").textContent = arr[arr.length -1];
+      }
+      else{
+        document.querySelector("#opText").textContent = '';
+      }
+      b = false
+    }
+     display = document.querySelector("#opText");
+     opStr = display.textContent;
+     arr = opStr.trim().split(/\s+/);
+
     if (clicked == "clear") {
       document.querySelector("#opText").textContent = '';
     }
@@ -49,8 +62,17 @@ for (let i = 0; i < 20; i++) {
       }
   }
     else if (clicked == "=") {
-      console.log('nigger');
        operate();
+    }
+    else if (clicked == " - "){
+      if (opStr[opStr.length - 1] == " " || opStr == ""){
+        document.querySelector("#opText").textContent += "-";
+      }
+      else{
+        if (arr.length <= 3) {
+        document.querySelector("#opText").textContent += " - ";
+        }
+      }
     }
     else {
       if (arr.length <= 3) {
@@ -80,19 +102,23 @@ let n;
 switch (opp) {
   case '+':
     num1 = Calculator.Add(num1, num2);
-    display.textContent = num1;
+    display.textContent = opStr + ' = ' + num1;
+    b = true;
     break;
   case '-':
     num1 = Calculator.Sub(num1, num2);
-    display.textContent = num1;
+    display.textContent = opStr + ' = ' + num1;
+    b = true;
     break;
   case '*':
     num1 = Calculator.Mul(num1, num2);
-    display.textContent = num1;
+    display.textContent = opStr + ' = ' + num1;
+    b = true;
     break;
   case '/':
     num1 = Calculator.Div(num1, num2);
-    display.textContent = num1;
+    display.textContent = opStr + ' = ' + num1;
+    b = true;
     break;
   default:
     console.log("Invalid operation");
